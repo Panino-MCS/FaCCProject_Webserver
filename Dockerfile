@@ -11,4 +11,6 @@ ENV PATH $PATH:$JAVA_HOME/bin
 # Compile Game
 RUN javac Webserver.java
 
+EXPOSE 8000
+
 ENTRYPOINT java Webserver

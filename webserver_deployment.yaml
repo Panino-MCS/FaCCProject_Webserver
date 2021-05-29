@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: webserver_deployment
+  name: webserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: webserver_deployment
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: webserver_deployment
+    spec:
+      containers:
+      - image: docker.io/andreatraldi/webserver:latest
+        name: webserver
+        ports:
+        - containerPort: 8000
