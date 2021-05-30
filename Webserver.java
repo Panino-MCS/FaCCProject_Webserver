@@ -23,7 +23,7 @@ public class Webserver {
             
             //Execute command
             try {
-                Process process = Runtime.getRuntime().exec("kubectl run -it --rm --image=docker.io/andreatraldi/game:v1");
+                Process process = Runtime.getRuntime().exec("kubectl get pod");
             } catch (Exception e) {
                 // printStackTrace method
                 // prints line numbers + call stack
