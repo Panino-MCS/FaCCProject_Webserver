@@ -24,7 +24,14 @@ public class Webserver {
             //Execute command
             try {
                 Process process = Runtime.getRuntime().exec("kubectl run -it --rm --image=docker.io/andreatraldi/game:v1");
-            } catch (Exception e) {}
+            } catch (Exception e) {
+                // printStackTrace method
+                // prints line numbers + call stack
+                e.printStackTrace();
+              
+                // Prints what exception has been thrown
+                System.out.println(e);
+            }
     
 
 
