@@ -1,6 +1,7 @@
 
-
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 
@@ -23,10 +24,11 @@ public class Webserver {
             
             //Execute command
             try {
-                Process process = Runtime.getRuntime().exec("kubectl get pod");
+                //Process process = Runtime.getRuntime().exec("kubectl get pod");
 
-                String[] cmdline = { "sh", "-c", "echo done" }; 
-                Process process2 = Runtime.getRuntime().exec(cmdline);
+                String[] cmdline = { "sh", "-c", "ping www.google.com" }; 
+                Process process = Runtime.getRuntime().exec(cmdline);
+                printResults(process);
                 
             } catch (Exception e) {
                 // printStackTrace method
@@ -46,5 +48,13 @@ public class Webserver {
             os.close();
         }
     }
+
+    public static void printResults(Process process) throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+    String line = "";
+    while ((line = reader.readLine()) != null) {
+        System.out.println(line);
+    }
+}
 
 }
