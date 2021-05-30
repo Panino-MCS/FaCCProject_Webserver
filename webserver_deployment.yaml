@@ -15,8 +15,22 @@ spec:
       labels:
         app: webserver
     spec:
+      volumes:
+      - name: kubectl
+        emptyDir: {}
+      initContainers:
+      - name: install-kubectl
+        image: allanlei/kubectl
+        volumeMounts:
+        - name: kubectl
+          mountPath: /data
+        command: ["cp", "/usr/local/bin/kubectl", "/data/kubectl"]
       containers:
       - name: webserver-app
         image: docker.io/andreatraldi/webserver:latest
+        volumeMounts:
+        - name: kubectl
+          subPath: kubectl
+          mountPath: /usr/local/bin/kubectl
       serviceAccountName: webserver-account
       automountServiceAccountToken: false
