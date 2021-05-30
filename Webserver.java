@@ -24,12 +24,8 @@ public class Webserver {
             //Execute command
             try {
                 Process process = Runtime.getRuntime().exec("kubectl get pod");
-		process.waitFor();
-		BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
-		String line = "";
-		while ((line=buf.readLine())!=null) {
-			System.out.println(line);
-		}
+                Process process2 = Runtime.getRuntime().exec("echo done");
+                
             } catch (Exception e) {
                 // printStackTrace method
                 // prints line numbers + call stack
