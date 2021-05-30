@@ -24,7 +24,9 @@ public class Webserver {
             //Execute command
             try {
                 Process process = Runtime.getRuntime().exec("kubectl get pod");
-                Process process2 = Runtime.getRuntime().exec("echo done");
+
+                String[] cmdline = { "sh", "-c", "echo done" }; 
+                Process process2 = Runtime.getRuntime().exec(cmdline);
                 
             } catch (Exception e) {
                 // printStackTrace method
