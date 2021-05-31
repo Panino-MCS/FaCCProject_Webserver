@@ -26,7 +26,7 @@ public class Webserver {
             try {
                 //Process process = Runtime.getRuntime().exec("kubectl get pod");
 
-                String[] cmdline = { "sh", "-c", "kubectl run -it --rm --image=docker.io/andreatraldi/game:v1 --restart=Never game -- /bin/bash" }; 
+                String[] cmdline = { "/data", "-c", "/kubectl run -it --rm --image=docker.io/andreatraldi/game:v1 --restart=Never game -- /bin/bash" }; 
                 Process process = Runtime.getRuntime().exec(cmdline);
                 printResults(process);
                 

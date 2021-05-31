@@ -32,5 +32,5 @@ spec:
         - name: kubectl
           subPath: kubectl
           mountPath: /usr/local/bin/kubectl
-      serviceAccountName: webserver-account
+      serviceAccountName: spinupcontainers
       automountServiceAccountToken: false
