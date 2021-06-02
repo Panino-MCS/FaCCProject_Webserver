@@ -1,5 +1,5 @@
 # Linux image used
-FROM debian:buster
+FROM alpine
 
 RUN apt update && \
       apt install -y curl && \
