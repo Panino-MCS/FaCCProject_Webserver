@@ -1,23 +1,12 @@
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: spinupcontainers
-  # "namespace" omitted if was ClusterRoles because are not namespaced
-  namespace: default
-  labels:
-    k8s-app: webserver
+  name: modify-pods
 rules:
-#
-# Give here only the privileges you need
-#
-- apiGroups: [""]
-  resources:
-  - pods
-  verbs:
-  - create
-  - update
-  - patch
-  - delete
-  - get
-  - watch
-  - list
+  - apiGroups: [""]
+    resources:
+      - pods
+    verbs:
+      - get
+      - create
+      - delete

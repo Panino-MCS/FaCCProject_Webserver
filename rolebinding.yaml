@@ -1,12 +1,11 @@
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: spinupcontainers
+  name: modify-pods-to-sa
 subjects:
-- kind: ServiceAccount
-  name: spinupcontainers
-  namespace: default
+  - kind: ServiceAccount
+    name: internal-kubectl
 roleRef:
   kind: Role
-  name: spinupcontainers
+  name: modify-pods
   apiGroup: rbac.authorization.k8s.io
