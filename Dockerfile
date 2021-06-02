@@ -5,20 +5,32 @@ WORKDIR /root/webserver
 COPY Webserver.java /root/webserver
 
 # Install JDK
-RUN apt-get update && \
-    apt-get install -y openjdk-8-jdk && \
-    apt-get install -y ant && \
-    apt-get clean;
+FROM debian:stretch
+MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-# Fix certificate issues
-RUN apt-get update && \
-    apt-get install ca-certificates-java && \
-    apt-get clean && \
-    update-ca-certificates -f;
+LABEL Description="Java + Debian (OpenJDK)"
 
-# Setup JAVA_HOME -- useful for docker commandline
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
-RUN export JAVA_HOME
+ENV DEBIAN_FRONTEND noninteractive
+
+ARG JAVA_VERSION=8
+ARG JAVA_RELEASE=JRE
+
+RUN bash -c ' \
+    set -euxo pipefail && \
+    apt-get update && \
+    pkg="openjdk-$JAVA_VERSION"; \
+    if [ "$JAVA_RELEASE" = "JDK" ]; then \
+        pkg="$pkg-jdk"; \
+    else \
+        pkg="$pkg-jre-headless"; \
+    fi; \
+    apt-get install -y --no-install-recommends "$pkg" && \
+    apt-get clean \
+    '
+
+COPY profile.d/java.sh /etc/profile.d/
+
+ENV JAVA_HOME=/usr
 
 # Compile Game
 RUN javac Webserver.java
