@@ -1,5 +1,5 @@
 # Linux image used
-FROM alpine
+FROM debian
 
 RUN apt update && \
       apt install -y curl && \
