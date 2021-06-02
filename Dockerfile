@@ -5,29 +5,13 @@ WORKDIR /root/webserver
 COPY Webserver.java /root/webserver
 
 # Install JDK
-LABEL Description="Java + Debian (OpenJDK)"
+ENV DEBIAN_FRONTEND=noninteractive
 
-ENV DEBIAN_FRONTEND noninteractive
+RUN mkdir -p /usr/share/man/man1 /usr/share/man/man2
 
-ARG JAVA_VERSION=8
-ARG JAVA_RELEASE=JRE
-
-RUN bash -c ' \
-    set -euxo pipefail && \
-    apt-get update && \
-    pkg="openjdk-$JAVA_VERSION"; \
-    if [ "$JAVA_RELEASE" = "JDK" ]; then \
-        pkg="$pkg-jdk"; \
-    else \
-        pkg="$pkg-jre-headless"; \
-    fi; \
-    apt-get install -y --no-install-recommends "$pkg" && \
-    apt-get clean \
-    '
-
-COPY profile.d/java.sh /etc/profile.d/
-
-ENV JAVA_HOME=/usr
+RUN apt-get update && \
+apt-get install -y --no-install-recommends \
+        openjdk-8-jre
 
 # Compile Game
 RUN javac Webserver.java
