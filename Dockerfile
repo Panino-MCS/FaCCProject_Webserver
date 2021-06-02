@@ -11,7 +11,7 @@ WORKDIR /root/webserver
 COPY Webserver.java /root/webserver
 
 # Install JDK
-RUN apk add openjdk8
+RUN apt add openjdk8
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
 ENV PATH $PATH:$JAVA_HOME/bin
 
