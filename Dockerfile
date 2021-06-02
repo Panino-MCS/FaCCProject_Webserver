@@ -5,9 +5,6 @@ WORKDIR /root/webserver
 COPY Webserver.java /root/webserver
 
 # Install JDK
-FROM debian:stretch
-MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
-
 LABEL Description="Java + Debian (OpenJDK)"
 
 ENV DEBIAN_FRONTEND noninteractive
