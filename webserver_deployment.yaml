@@ -1,9 +1,21 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: webserver
+  namespace: default
+  labels:
+    app: webserver
 spec:
-  serviceAccountName: internal-kubectl
-  containers:
-    - name: webserver
-      image: andreatraldi/webserver:latest
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webserver
+  template:
+    metadata:
+      labels:
+        app: webserver
+    spec:
+      serviceAccountName: webserver-service
+      containers:
+        - name: webserver
+          image: andreatraldi/webserver:latest

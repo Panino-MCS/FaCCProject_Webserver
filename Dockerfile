@@ -19,4 +19,4 @@ RUN javac Webserver.java
 
 EXPOSE 8000
 
-ENTRYPOINT java Game
+ENTRYPOINT java Webserver
