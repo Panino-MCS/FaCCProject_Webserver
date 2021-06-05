@@ -26,7 +26,7 @@ public class Webserver {
             try {
                 //Process process = Runtime.getRuntime().exec("kubectl get pod");
 
-                String[] cmdline = {"/bin/bash", "-c","kubectl get po"}; 
+                String[] cmdline = {"/bin/sh", "-c","kubectl get po"}; 
                 Process process = Runtime.getRuntime().exec(cmdline);
                 printResults(process);
                 
