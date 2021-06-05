@@ -26,7 +26,7 @@ public class Webserver {
             try {
                 //Process process = Runtime.getRuntime().exec("kubectl get pod");
 
-                String[] cmdline = { "/data", "-c", "/kubectl run -it --rm --image=docker.io/andreatraldi/game:v1 --restart=Never game -- /bin/bash" }; 
+                String[] cmdline = {"kubectl get po"}; 
                 Process process = Runtime.getRuntime().exec(cmdline);
                 printResults(process);
                 
@@ -41,7 +41,7 @@ public class Webserver {
     
 
 
-            String response = "Entering the Game!";
+            String response = "Run this to enter the game! kubectl run -it --rm --image=docker.io/andreatraldi/game:v1 --restart=Never game -- /bin/bash \n";
             t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();
             os.write(response.getBytes());
